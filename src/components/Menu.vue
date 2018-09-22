@@ -4,7 +4,7 @@
             <h1 class="clubLogo"><img src="../assets/logo.png" alt="CLUBLOGO"></h1>
             <ul class="list clearfix">
                 <li v-for="item in menu">
-                    <a v-if="item.type === 'link'" :href="item.link">{{ item.text }}</a>
+                    <a v-if="item.link" :href="item.link">{{ item.text }}</a>
                     <router-link v-else :to="item.to">{{ item.text }}</router-link>
                 </li>
             </ul>

@@ -6,10 +6,10 @@ Vue.config.productionTip = false;
 
 Vue.use(VueRouter);
 
-import Introduce from "./components/Introduce.vue";
+import Main from "./components/WelcomePage/Main.vue"
 
 const routes = [
-    { path: '/introduce', component: Introduce },
+    { path: '/', component: Main },
 ];
 
 const router = new VueRouter( {

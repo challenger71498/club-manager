@@ -1,11 +1,12 @@
 <template>
-    <div class="introduce">
-        Hello, Introduce
+    <div class="contents">
+
     </div>
 </template>
 
 <script>
     export default {
+
     };
 </script>
 

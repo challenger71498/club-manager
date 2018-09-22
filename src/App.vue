@@ -12,17 +12,15 @@
 
     export default {
         name: 'app',
-        components: {
-            Menu,
-        },
+        components: { Menu },
         data () {
             return {
                 menu: [
-                    { text: 'INTRODUCE', to: '/introduce' },
-                    { text: 'ACTIVITIES', link: 'http://www.naver.com/', type: 'link' },
-                    { text: 'SOCIAL IMPACTS', to: '/' },
-                    { text: 'PARTNERS', to: '/' },
-                    { text: 'JOIN US', to: '/' }
+                    { text: 'INTRODUCE', link: '#introduce' },
+                    { text: 'ACTIVITIES', link: '#activities' },
+                    { text: 'SOCIAL IMPACTS', link: '#social_impacts' },
+                    { text: 'PARTNERS', link: '#partners' },
+                    { text: 'JOIN US', link: '#join_us' }
                 ]
             };
         }
@@ -42,6 +40,7 @@
         width: 100%;
         top: 0;
         left: 0;
+        z-index: 100;
     }
 
     .view {
