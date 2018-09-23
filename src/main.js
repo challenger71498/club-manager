@@ -8,8 +8,9 @@ Vue.use(VueRouter);
 
 import Main from "./components/WelcomePage/Main.vue"
 
+
 const routes = [
-    { path: '/', component: Main },
+    { path: '/', component: Main }
 ];
 
 const router = new VueRouter( {

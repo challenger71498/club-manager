@@ -1,27 +1,27 @@
 <template>
     <div class="sections">
         <section class="introduce">
-            <a name="introduce" class="anchor">Introduce</a>
-            <div class="big">introduce</div>
+            <a name="introduce" class="anchor"></a>
+            <Contents :image="content[0].image" :text="content[0].text"></Contents>
         </section>
 
         <section class="activities">
-            <a name="activities" class="anchor">Activities</a>
+            <a name="activities" class="anchor"></a>
             <div class="big">activities</div>
         </section>
 
         <section class="social_impacts">
-            <a name="social_impacts" class="anchor">Social Impacts</a>
+            <a name="social_impacts" class="anchor"></a>
             <div class="big">social_impacts</div>
         </section>
 
         <section class="partners">
-            <a name="partners" class="anchor">Partners</a>
+            <a name="partners" class="anchor"></a>
             <div class="big">partners</div>
         </section>
 
         <section class="join_us">
-            <a name="join_us" class="anchor">Join Us</a>
+            <a name="join_us" class="anchor"></a>
             <div class="big">join_us</div>
         </section>
     </div>
@@ -29,10 +29,20 @@
 
 <script>
     import Menu from '../Menu.vue';
+    import Contents from './Contents.vue'
 
     export default {
-        components: { Menu },
-
+        components: {
+            Menu,
+            Contents
+        },
+        data() {
+            return {
+                content: [
+                    { image: require('../../assets/hackathon.png'), text:"TEST1" }
+                ]
+            }
+        }
     };
 </script>
 

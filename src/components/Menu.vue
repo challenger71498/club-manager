@@ -3,7 +3,7 @@
         <div class="menu_wrap clearfix">
             <h1 class="clubLogo"><img src="../assets/logo.png" alt="CLUBLOGO"></h1>
             <ul class="list clearfix">
-                <li v-for="item in menu">
+                <li v-for="item in info">
                     <a v-if="item.link" :href="item.link">{{ item.text }}</a>
                     <router-link v-else :to="item.to">{{ item.text }}</router-link>
                 </li>
@@ -15,11 +15,11 @@
 <script>
     export default {
         props: {
-            menu: {
+            info: {
                 type: Array,
                 default: () => []
             }
-        },
+        }
     }
 </script>
 
