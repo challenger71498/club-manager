@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Menu id="menu" :info="menu"></Menu>
+        <Menu id="menu" :menu="menu"></Menu>
         <div class="view">
             <router-view></router-view>
         </div>
@@ -16,11 +16,11 @@
         data () {
             return {
                 menu: [
-                    { text: 'INTRODUCE', link: '#introduce' },
-                    { text: 'ACTIVITIES', link: '#activities' },
-                    { text: 'SOCIAL IMPACTS', link: '#social_impacts' },
-                    { text: 'PARTNERS', link: '#partners' },
-                    { text: 'JOIN US', link: '#join_us' }
+                    { text: '소개', child: [ { text: "활동", link: "/intro/#activities"}, { text: "연혁", link: "/intro/#history"}, { text: "파트너쉽", link: "/intro/#partners"},] },
+                    { text: '활동', link: '/activities' },
+                    { text: '게시판', child: [ { text: "공지", link: ""}, { text: "자유게시판", link: ""}, { text: "건의게시판", link: ""},] },
+                    { text: '스터디', child: [ { text: "해킹 스터디", link: ""}, { text: "게임 스터디", link: ""}, { text: "웹 스터디", link: ""}, { text: "하드웨어 스터디", link: ""},] },
+                    { text: '소모임', child: [ { text: "리그오브레전드", link: ""}, { text: "히오스", link: ""}, { text: "하스스톤", link: ""}, { text: "메이플스토리", link: ""},] },
                 ]
             };
         }

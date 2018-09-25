@@ -20,7 +20,7 @@
         position: relative;
         width: 100%;
         height: 700px;
-
+        margin: 80px 0;
     }
     .content_image {
         height: 700px;
