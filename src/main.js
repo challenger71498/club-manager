@@ -12,10 +12,12 @@ Vue.use(BootstrapVue)
 
 import WelcomePage from "./components/WelcomePage/Main.vue"
 import MainPage from './components/MainPage/Main.vue'
+import BoardPage from './components/Posts/Board.vue'
 
 const routes = [
     { path: '/', component: MainPage },
-    { path: '/intro', component: WelcomePage }
+    { path: '/intro', component: WelcomePage },
+    { path: '/posts', component: BoardPage },
 ];
 
 const router = new VueRouter( {
