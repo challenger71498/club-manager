@@ -12,8 +12,8 @@
             <ul class="attributes">
                 <li class="attribute date">{{post.date}}</li>
                 <li class="attribute writer">{{post.writer}}</li>
-                <li class="attribute view_count"><img class="icon" src="../../assets/like-icon.png">{{post.like_count}}</li>
-                <li class="attribute total_comment"><img class="icon" src="../../assets/comment-icon.png">{{post.total_comment}}</li>
+                <li class="attribute view_count"><img class="icon" src="../../../assets/like-icon.png">{{post.like_count}}</li>
+                <li class="attribute total_comment"><img class="icon" src="../../../assets/comment-icon.png">{{post.total_comment}}</li>
             </ul>
         </div>
     </div>
