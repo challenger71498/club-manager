@@ -1,7 +1,7 @@
 <template>
     <div>
         <PostList :category="category" :posts="posts"></PostList>
-        <!--<Comments :comments="test"></Comments>-->
+        <Comments :comments="test"></Comments>
     </div>
 </template>
 

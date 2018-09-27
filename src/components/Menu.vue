@@ -1,7 +1,11 @@
 <template>
     <div class="menu" v-on:mouseover="active=true" v-on:mouseleave="active=false">
         <div class="menu_wrap">
-            <h1 class="clubLogo"><img src="../assets/logo.png" alt="CLUBLOGO"></h1>
+            <h1 class="clubLogo">
+                <router-link to="/">
+                    <img src="../assets/logo.png" alt="CLUBLOGO">
+                </router-link>
+            </h1>
             <!--<ul class="list clearfix">
                 <li v-for="item in menu">
                     <a v-if="item.link" :href="item.link">{{ item.text }}</a>
@@ -11,10 +15,19 @@
             <div class="buttons">
                 <ul class="list mainlist" v-for="list in menu">
                     <ul class="list" v-if="list.child">
-                        <li class="category">{{list.text}}</li>
-                        <li class="children" v-for="child in list.child" v-show="active">{{child.text}}</li>
+                        <li class="category">
+                            <router-link :to="list.to" v-if="list.to">{{ list.text }}</router-link>
+                            <a :href="list.link" v-else>{{ list.text }}</a>
+                        </li>
+                        <li class="children" v-for="child in list.child" v-show="active">
+                            <router-link :to="child.to" v-if="child.to">{{ child.text }}</router-link>
+                            <a :href="child.link" v-else>{{ child.text }}</a>
+                        </li>
                     </ul>
-                    <li v-else class="category">{{list.text}}</li>
+                    <li v-else class="category">
+                        <router-link :to="list.to" v-if="list.to">{{ list.text }}</router-link>
+                        <a :href="list.link" v-else>{{ list.text }}</a>
+                    </li>
                 </ul>
             </div>
 
