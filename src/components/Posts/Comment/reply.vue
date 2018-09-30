@@ -34,7 +34,7 @@
     .reply {
         width: 1000px;
         padding: 10px auto 0 auto;
-        background-color: #fafafa;
+        background-color: #e8e8e8;
     }
     .indent {
         position: relative;

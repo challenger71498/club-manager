@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-        <h1 class="category">{{category}}</h1>
+        <h1 class="parents">{{category}}</h1>
         <div class="article" v-for="post in posts">
             <div>
                 <div>
@@ -22,7 +22,7 @@
 <script>
     import bBadge from 'bootstrap-vue/es/components/badge/badge';
     export default {
-        name: "post-list",
+        name: "postlist-large",
         components: {
             bBadge
         },
@@ -60,7 +60,7 @@
         right: 0;
         bottom: 31px;
     }
-    .category {
+    .parents {
         position: relative;
         top: 50px;
     }
