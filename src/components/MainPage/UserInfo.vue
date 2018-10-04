@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "user-alarm",
+        name: "UserInfo",
         props: {
             user : {
                 userName : String,

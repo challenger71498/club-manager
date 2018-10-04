@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import PostList from './Board/Postlist-large.vue'
+    import PostList from './Board/PostlistLarge.vue'
     import Comments from './Comments.vue'
     export default {
         name: "post-page",

@@ -2,8 +2,9 @@
     <div class="wrap">
         <Carousel class="carousel"></Carousel>
         <div class="contents">
-            <UserInfo class="user" :user="user"></UserInfo>
-            <Notice_preview class="notice-preview" :contents="noticePreview"></Notice_preview>
+            <UserInfo v-if="isLogged" class="user" :user="user"></UserInfo>
+            <Login v-else class="user"></Login>
+            <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
         </div>
         <!--<Summary :small="summary"></Summary>-->
     </div>
@@ -12,17 +13,20 @@
 <script>
     import Menu from '../Menu.vue'
     import Carousel from '../BootStrap/Carousel.vue'
-    import UserInfo from './User-info.vue'
-    import Notice_preview from './Notice_preview.vue'
+    import UserInfo from './UserInfo.vue'
+    import NoticePreview from './NoticePreview.vue'
+    import Login from './Login.vue'
     export default {
         components : {
             Menu,
             Carousel,
             UserInfo,
-            Notice_preview,
+            NoticePreview,
+            Login
         },
         data() {
             return {
+                isLogged : false,
                 menu : [
                     { text: 'ABOUT US', link: '/' },
                     { text: '게시판', link: '/' },
