@@ -18,23 +18,24 @@
                 menu: [
                     {
                         text: '소개',
-                        child: [
-                            { text: "활동", to: "/intro/#activities" },
-                            { text: "연혁", to: "/intro/#history" },
-                            { text: "파트너쉽", to: "/intro/#partners" },
-                        ]
-                    },
-                    {
-                        text: '활동',
-                        to: '/activities'
+                        to: '/intro'
+                        // child: [
+                        //     { text: "활동", to: "/intro/#activities" },
+                        //     { text: "연혁", to: "/intro/#history" },
+                        //     { text: "파트너쉽", to: "/intro/#partners" },
+                        // ]
                     },
                     {
                         text: '게시판',
                         child: [
-                            { text: "공지", to: "" },
+                            { text: "공지", to: "/board" },
                             { text: "자유게시판", to: "" },
                             { text: "건의게시판", to: ""},
                         ]
+                    },
+                    {
+                        text: '외부활동',
+                        to: ""
                     },
                     {
                         text: '스터디',

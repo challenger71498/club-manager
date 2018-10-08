@@ -10,14 +10,37 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(BootstrapVue)
 
+Vue.prototype.$EventBus = new Vue();
+
 import WelcomePage from "./components/WelcomePage/Main.vue"
 import MainPage from './components/MainPage/Main.vue'
-import BoardPage from './components/Posts/Board.vue'
+// import Board from './components/Posts/Board.vue'
+
+import BoardLayout from './components/Board/Layout.vue';
+import BoardList from './components/Board/List.vue'
+import BoardDocument from './components/Board/Document.vue'
 
 const routes = [
     { path: '/', component: MainPage },
     { path: '/intro', component: WelcomePage },
-    { path: '/posts', component: BoardPage },
+    // { path: '/posts', component: Board },
+
+    {
+        path: '/board/:board_idx(\\d+)',
+        component: BoardLayout,
+        children: [
+            {
+                path: '',
+                name: 'BoardList',
+                component: BoardList
+            },
+            {
+                path: 'read/:document_idx(\\d+)',
+                name: 'BoardDocument',
+                component: BoardDocument
+            }
+        ]
+    }
 ];
 
 const router = new VueRouter( {

@@ -5,8 +5,9 @@
             <UserInfo v-if="isLogged" class="user" :user="user"></UserInfo>
             <Login v-else class="user"></Login>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
+            <PhotoPreview></PhotoPreview>
+            <PhotoPreview></PhotoPreview>
         </div>
-        <!--<Summary :small="summary"></Summary>-->
     </div>
 </template>
 
@@ -16,13 +17,15 @@
     import UserInfo from './UserInfo.vue'
     import NoticePreview from './NoticePreview.vue'
     import Login from './Login.vue'
+    import PhotoPreview from './PhotoPreview.vue'
     export default {
         components : {
             Menu,
             Carousel,
             UserInfo,
             NoticePreview,
-            Login
+            Login,
+            PhotoPreview,
         },
         data() {
             return {
@@ -54,14 +57,15 @@
         position: relative;
     }
     .contents {
-        width: 1200px;
-        margin: 20px auto;
+        width: 1220px;
+        margin: 10px auto;
+    }
+    .contents > * {
+        float: left;
+        margin: 10px;
     }
     .user {
-        float: left;
     }
     .notice-preview {
-        margin-left: 20px;
-        float: left;
     }
 </style>

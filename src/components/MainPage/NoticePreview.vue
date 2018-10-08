@@ -12,7 +12,6 @@
 
 <script>
     export default {
-        name: "postlist-small",
         props: {
             contents: {
                 type: Array
