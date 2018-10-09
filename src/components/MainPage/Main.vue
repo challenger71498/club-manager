@@ -5,7 +5,8 @@
             <UserInfo v-if="isLogged" class="user" :user="user"></UserInfo>
             <Login v-else class="user"></Login>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
-            <PhotoPreview></PhotoPreview>
+            <PhotoPreview :photos="PhotoPreviewData"></PhotoPreview>
+            <DocumentPreview :list="DocumentPreviewData"></DocumentPreview>
         </div>
     </div>
 </template>
@@ -17,6 +18,7 @@
     import NoticePreview from './NoticePreview.vue'
     import Login from './Login.vue'
     import PhotoPreview from './PhotoPreview.vue'
+    import DocumentPreview from './DocumentPreview.vue'
     export default {
         components : {
             Menu,
@@ -25,6 +27,7 @@
             NoticePreview,
             Login,
             PhotoPreview,
+            DocumentPreview,
         },
         data() {
             return {
@@ -45,6 +48,100 @@
                     {title: "컴퓨터 연구동아리 IGRUS에서 신입회원을 모집합니다!", date: "2018-10-01"},
                     {title: "공지4", date: "2018-10-01"},
                     {title: "공지5", date: "2018-10-01"},
+                ],
+                PhotoPreviewData : [
+                    "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&h=3500",
+                    "https://images.pexels.com/photos/315191/pexels-photo-315191.jpeg?auto=compress&cs=tinysrgb&h=350,",
+                    "https://images.pexels.com/photos/378570/pexels-photo-378570.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    "https://images.pexels.com/photos/247791/pexels-photo-247791.png?auto=compress&cs=tinysrgb&h=350",
+                    "https://images.pexels.com/photos/825262/pexels-photo-825262.jpeg?auto=compress&cs=tinysrgb&h=350",
+                    "https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&h=350"
+                ],
+                DocumentPreviewData : [
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
                 ]
             }
         }

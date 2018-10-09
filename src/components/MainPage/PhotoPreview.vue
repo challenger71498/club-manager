@@ -1,7 +1,7 @@
 <template>
     <div class="PhotoPreview__Wrapper">
-        <div class="title">Recent Photo</div>
-        <Item v-for="n in 6" :url=url></Item>
+        <div class="title">Photo</div>
+        <Item v-for="photo in photos" :url=photo></Item>
     </div>
 </template>
 
@@ -11,11 +11,9 @@
         components: {
             Item
         },
-        data() {
-            return {
-                url: 'https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&h=350'
-            }
-        }
+        props: {
+            photos: Array
+        },
     }
 </script>
 
@@ -31,6 +29,6 @@
         height: 50px;
         font: 20px lighter;
         color: darkgray;
-        padding: 10px;
+        padding: 0 10px 10px 10px;
     }
 </style>
