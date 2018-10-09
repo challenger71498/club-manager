@@ -55,10 +55,12 @@
         position: relative;
         float: left;
         line-height: 40px;
+        font-size: 15px;
     }
     .notice-date {
         position: relative;
         float: right;
         line-height: 40px;
+        font-size: 15px;
     }
 </style>

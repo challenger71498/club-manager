@@ -19,7 +19,7 @@ import SignUp from './components/LoginPage/SignUp.vue'
 
 import BoardLayout from './components/Board/Layout.vue';
 import BoardList from './components/Board/List.vue'
-import BoardDocument from './components/Board/Document.vue'
+import BoardDocumentRead from './components/Board/DocumentRead.vue'
 
 const routes = [
     { path: '/', component: MainPage },
@@ -38,7 +38,7 @@ const routes = [
             {
                 path: 'read/:document_idx(\\d+)',
                 name: 'BoardDocument',
-                component: BoardDocument
+                component: BoardDocumentRead
             }
         ]
     }
