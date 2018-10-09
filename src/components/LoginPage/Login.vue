@@ -2,8 +2,8 @@
     <div class="Login__Wrapper">
         <form class="wrap" v-on:submit.prevent="login">
             <div class="input">
-                <input type="text" v-model="id" placeholder="ID">
-                <input type="password" v-model="password" placeholder="Password">
+                <input type="text" v-model="id" placeholder=" ID">
+                <input type="password" v-model="password" placeholder=" Password">
             </div>
             <div class="buttons">
                 <button type="submit" class="login">로그인</button>

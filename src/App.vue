@@ -18,12 +18,13 @@
                 menu: [
                     {
                         text: '소개',
-                        to: '/intro'
-                        // child: [
-                        //     { text: "활동", to: "/intro/#activities" },
-                        //     { text: "연혁", to: "/intro/#history" },
-                        //     { text: "파트너쉽", to: "/intro/#partners" },
-                        // ]
+                        to: '/intro',
+                        child: [
+                            { text: "활동", to: "/intro/#activities" },
+                            { text: "연혁", to: "/intro/#history" },
+                            { text: "파트너쉽", to: "/intro/#partners" },
+                            { text: "가입하기", to: "/intro/#join_us"}
+                        ]
                     },
                     {
                         text: '게시판',

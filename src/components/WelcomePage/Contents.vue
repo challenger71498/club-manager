@@ -24,6 +24,7 @@
     }
     .content_image {
         height: 700px;
+        width: 100%;
         float: left;
     }
     .content_text {
