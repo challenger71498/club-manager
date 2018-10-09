@@ -28,7 +28,7 @@
                     {
                         text: '게시판',
                         child: [
-                            { text: "공지", to: "/board" },
+                            { text: "공지", to: "/board/0" },
                             { text: "자유게시판", to: "" },
                             { text: "건의게시판", to: ""},
                         ]

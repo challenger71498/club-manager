@@ -21,7 +21,7 @@
                     writer: idx,
                     view_count: 5,
                     total_comment: 5,
-                    fresh: false,
+                    idx: 1234,
                     to: {
                         name: 'BoardDocument',
                         params: {
@@ -44,8 +44,7 @@
 <style scoped>
     .BoardList__Wrapper {
         width: 1200px;
-        background-color: #e8e8e8;
-        border: 1px solid lightgray;
+        background-color: #ffffff;
         margin: 20px auto;
     }
 </style>

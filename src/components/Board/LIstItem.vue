@@ -1,34 +1,23 @@
 <template>
-    <router-link class="ListItem__Wrapper" :to="to">
-        <div>
-            <div>
-                <h4 class="title">{{ title }}<b-badge class="badge" v-if="fresh">new</b-badge></h4>
-                <p class="content">{{ content }}</p>
-            </div>
-            <!--<img class="image" v-if="post.content.image" :src="post.content.image">-->
-        </div>
-
-        <ul class="attributes">
-            <li class="attribute date">{{ register_date }}</li>
-            <li class="attribute writer">{{ writer_name }}</li>
-            <li class="attribute view_count"><img class="icon" src="../../assets/view-icon.png">{{ view_count }}</li>
-            <li class="attribute total_comment"><img class="icon" src="../../assets/comment-icon.png">{{ total_comment }}</li>
-        </ul>
-    </router-link>
+    <tr class="ListItem__Wrapper">
+        <td class="idx">{{idx}}</td>
+        <td class="title">
+            <router-link :to="to">{{ title }}</router-link>
+        </td>
+        <td class="date">{{ register_date }}</td>
+        <td class="writer">{{ writer_name }}</td>
+        <td class="view_count"><img class="icon" src="../../assets/view-icon.png">{{ view_count }}</td>
+        <td class="total_comment"><img class="icon" src="../../assets/comment-icon.png">{{ total_comment }}</td>
+    </tr>
 </template>
 
 <script>
-    import bBadge from 'bootstrap-vue/es/components/badge/badge';
     export default {
         name: 'ListItem',
-        components: {
-            bBadge
-        },
         props: {
             to: [Object, String],
             title: String,
-            content: String,
-            fresh: Boolean,
+            idx: Number,
             register_date: String,
             writer: Number,
             writer_name: String,
@@ -40,6 +29,21 @@
 
 <style scoped>
     .ListItem__Wrapper {
-        display: b;
+        display: table-row;
+        border: solid #e4e4e4;
+        border-width: 1px 0;
+    }
+    .ListItem__Wrapper td {
+        padding: 10px 20px;
+        margin: 0;
+        display: table-cell;
+        text-align: left;
+        width: 1%;
+        white-space: nowrap;
+        font-size: 13px;
+    }
+    .ListItem__Wrapper .title {
+        width: auto;
+        white-space: normal;
     }
 </style>

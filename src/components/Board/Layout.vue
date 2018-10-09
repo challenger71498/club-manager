@@ -29,6 +29,7 @@
 <style scoped>
     .view {
         width: 1200px;
-        margin: auto;
+        margin: 20px auto;
+        padding: 0;
     }
 </style>

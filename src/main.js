@@ -12,9 +12,10 @@ Vue.use(BootstrapVue)
 
 Vue.prototype.$EventBus = new Vue();
 
-import WelcomePage from "./components/WelcomePage/Main.vue"
+import WelcomePage from "./components/WelcomePage/Intro.vue"
 import MainPage from './components/MainPage/Main.vue'
-// import Board from './components/Posts/Board.vue'
+import Login from './components/LoginPage/Login.vue'
+import SignUp from './components/LoginPage/SignUp.vue'
 
 import BoardLayout from './components/Board/Layout.vue';
 import BoardList from './components/Board/List.vue'
@@ -23,8 +24,8 @@ import BoardDocument from './components/Board/Document.vue'
 const routes = [
     { path: '/', component: MainPage },
     { path: '/intro', component: WelcomePage },
-    // { path: '/posts', component: Board },
-
+    { path: '/login', component: Login },
+    { path: '/signup', component: SignUp },
     {
         path: '/board/:board_idx(\\d+)',
         component: BoardLayout,
