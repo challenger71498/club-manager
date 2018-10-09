@@ -1,7 +1,7 @@
 <template>
     <div class="Login__Wrapper">
         <h1>Sign in</h1>
-        <form class="wrap" v-on:submit.prevent="login">
+        <form class="wrap" v-on:submit.prevent="join">
             <div class="input">
                 <input type="text" v-model="id" placeholder="ID">
                 <input type="password" v-model="password" placeholder="Password">
@@ -9,16 +9,15 @@
                 <input type="text" v-model="student_number" placeholder="Student Number">
             </div>
             <div class="buttons">
-                <button type="submit" class="login">회원 가입</button>
+                <button type="submit" class="join">회원 가입</button>
             </div>
         </form>
-
-
     </div>
 </template>
 
 <script>
     export default {
+        // 21~29번째 줄은 무슨 용도?
         props: {
             user : {
                 userName : String,
@@ -30,8 +29,8 @@
         },
 
         methods: {
-            onSubmit(){
-                // blank
+            join () {
+                alert(`ID: ${this.id}\nPW: ${this.password}\nNAME: ${this.name}\nsNum: ${this.student_number}`);
             }
         },
 
@@ -51,6 +50,7 @@
         width: 500px;
         height: 600px;
         margin: 20px auto;
+        border-radius: 8px;
         border: 1px solid black;
     }
     .Login__Wrapper input {
@@ -73,7 +73,7 @@
         margin: 50px;
         text-align: center;
     }
-    .login {
+    .join {
         width: 100%;
         height: 60px;
         display: block;

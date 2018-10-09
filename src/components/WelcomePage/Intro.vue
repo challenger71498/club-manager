@@ -69,7 +69,7 @@
 
                         여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 대통령은 국가의 안위에 관계되는 중대한 교전상태에 있어서 국가를 보위하기 위하여 긴급한 조치가 필요하고 국회의 집회가 불가능한 때에 한하여 법률의 효력을 가지는 명령을 발할 수 있다.
                     </p>
-                    <router-link to="signup"><button class="button">회원가입</button></router-link>
+                    <router-link :to="{name:'SignUp'}"><button class="button">회원가입</button></router-link>
                 </div>
             </section>
         </div>

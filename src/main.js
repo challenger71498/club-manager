@@ -26,7 +26,11 @@ const routes = [
     { path: '/', component: MainPage },
     { path: '/intro', component: WelcomePage },
     { path: '/login', component: Login },
-    { path: '/signup', component: SignUp },
+    {
+        path: '/signup',
+        name: 'SignUp',
+        component: SignUp
+    },
     { path: '/write', component: WriteDocument },
     {
         path: '/board/:board_idx(\\d+)',

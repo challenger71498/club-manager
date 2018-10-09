@@ -20,6 +20,7 @@
 
 <script>
     export default {
+        // 24~32번째 줄은 무슨 용도?
         props: {
             user : {
                 userName : String,
@@ -50,6 +51,7 @@
         width: 500px;
         height: 500px;
         margin: 20px auto;
+        border-radius: 8px;
         border: 1px solid black;
     }
     .Login__Wrapper input {
