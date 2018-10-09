@@ -6,7 +6,6 @@
             <Login v-else class="user"></Login>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
             <PhotoPreview></PhotoPreview>
-            <PhotoPreview></PhotoPreview>
         </div>
     </div>
 </template>

@@ -11,7 +11,7 @@
             <div class="others">
                 <router-link to="signup"><button class="other">회원가입</button></router-link>
                 <router-link to="find_id"><button class="other">아이디 찾기</button></router-link>
-                <router-link to="find_password"><button class="other no_border">비밀번호 찾기</button></router-link>
+                <router-link to="find_password"><button class="other">비밀번호 찾기</button></router-link>
             </div>
         </form>
     </div>
@@ -79,18 +79,14 @@
         font-size: 13px;
     }
     .others {
-        width: 285px;
+        width: 300px;
         margin: 0 auto;
     }
     .other {
-        width: 95px;
+        width: 100px;
         background-color: transparent;
-        border: none;
         color: #525252;
         font-size: 13px;
-        border-right: 1px solid #666666;
-    }
-    .no_border {
         border: none;
     }
 </style>
