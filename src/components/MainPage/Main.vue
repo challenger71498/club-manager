@@ -142,6 +142,21 @@
                         writer_name: '작성자',
                         view_count: 5
                     },
+
+                    {
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 1,
+                                document_idx: 1,
+                            },
+                        },
+                        idx: 1234,
+                        title: "글 제목",
+                        register_date: new Date().toISOString().substr(0, 10),
+                        writer_name: '작성자',
+                        view_count: 5
+                    },
                 ]
             }
         }

@@ -19,13 +19,15 @@ import SignUp from './components/LoginPage/SignUp.vue'
 
 import BoardLayout from './components/Board/Layout.vue';
 import BoardList from './components/Board/List.vue'
-import BoardDocumentRead from './components/Board/DocumentRead.vue'
+import BoardDocument from './components/Board/Document.vue'
+import WriteDocument from './components/Board/DocumentWrite.vue'
 
 const routes = [
     { path: '/', component: MainPage },
     { path: '/intro', component: WelcomePage },
     { path: '/login', component: Login },
     { path: '/signup', component: SignUp },
+    { path: '/write', component: WriteDocument },
     {
         path: '/board/:board_idx(\\d+)',
         component: BoardLayout,
@@ -38,8 +40,8 @@ const routes = [
             {
                 path: 'read/:document_idx(\\d+)',
                 name: 'BoardDocument',
-                component: BoardDocumentRead
-            }
+                component: BoardDocument
+            },
         ]
     }
 ];

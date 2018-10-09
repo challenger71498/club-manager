@@ -31,7 +31,7 @@
         border-width: 1px 0;
     }
     .ListItem__Wrapper td {
-        padding: 10px 20px;
+        padding: 8px 20px;
         margin: 0;
         display: table-cell;
         text-align: left;
