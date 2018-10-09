@@ -1,19 +1,19 @@
 <template>
     <div class="Login__Wrapper">
-        <!--<form class="wrap" v-on:submit.prevent="login">
+        <h1>Sign in</h1>
+        <form class="wrap" v-on:submit.prevent="login">
             <div class="input">
                 <input type="text" v-model="id" placeholder="ID">
                 <input type="password" v-model="password" placeholder="Password">
+                <input type="text" v-model="name" placeholder="Name">
+                <input type="text" v-model="student_number" placeholder="Student Number">
             </div>
             <div class="buttons">
-                <button type="submit" class="login">로그인</button>
+                <button type="submit" class="login">회원 가입</button>
             </div>
-            <div class="others">
-                <router-link to="signup"><button class="other">회원가입</button></router-link>
-                <router-link to="find_id"><button class="other">아이디 찾기</button></router-link>
-                <router-link to="find_password"><button class="other no_border">비밀번호 찾기</button></router-link>
-            </div>
-        </form>-->
+        </form>
+
+
     </div>
 </template>
 
@@ -30,8 +30,8 @@
         },
 
         methods: {
-            login () {
-                alert(`ID: ${this.id}\nPW: ${this.password}`);
+            onSubmit(){
+                // blank
             }
         },
 
@@ -39,7 +39,9 @@
             return {
                 id: '',
                 password: '',
-            };
+                name: '',
+                student_number: ''
+            }
         }
     }
 </script>
@@ -47,7 +49,7 @@
 <style scoped>
     .Login__Wrapper {
         width: 500px;
-        height: 500px;
+        height: 600px;
         margin: 20px auto;
         border: 1px solid black;
     }
@@ -56,16 +58,20 @@
         height: 60px;
         border-radius: 4px;
         border: 1px solid #bbb;
-        padding: 5px;
+        padding: 5px 5px 5px 15px;
         margin: 0 0 20px 0;
     }
     .Login__Wrapper .input{
         width: 80%;
-        margin: 120px auto 0 auto;
+        margin: 20px auto 0 auto;
     }
     .Login__Wrapper .buttons{
         width: 80%;
         margin: 20px auto;
+    }
+    .Login__Wrapper h1{
+        margin: 50px;
+        text-align: center;
     }
     .login {
         width: 100%;
@@ -77,20 +83,5 @@
         background: #059162;
         color: #fff;
         font-size: 13px;
-    }
-    .others {
-        width: 285px;
-        margin: 0 auto;
-    }
-    .other {
-        width: 95px;
-        background-color: transparent;
-        border: none;
-        color: #525252;
-        font-size: 13px;
-        border-right: 1px solid #666666;
-    }
-    .no_border {
-        border: none;
     }
 </style>

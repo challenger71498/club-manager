@@ -1,9 +1,10 @@
 <template>
     <div class="Login__Wrapper">
+        <h1>Login</h1>
         <form class="wrap" v-on:submit.prevent="login">
             <div class="input">
-                <input type="text" v-model="id" placeholder=" ID">
-                <input type="password" v-model="password" placeholder=" Password">
+                <input type="text" v-model="id" placeholder="ID">
+                <input type="password" v-model="password" placeholder="Password">
             </div>
             <div class="buttons">
                 <button type="submit" class="login">로그인</button>
@@ -56,16 +57,20 @@
         height: 60px;
         border-radius: 4px;
         border: 1px solid #bbb;
-        padding: 5px;
+        padding: 5px 5px 5px 15px;
         margin: 0 0 20px 0;
     }
     .Login__Wrapper .input{
         width: 80%;
-        margin: 120px auto 0 auto;
+        margin: 50px auto 0 auto;
     }
     .Login__Wrapper .buttons{
         width: 80%;
         margin: 20px auto;
+    }
+    .Login__Wrapper h1{
+        margin: 50px;
+        text-align: center;
     }
     .login {
         width: 100%;
