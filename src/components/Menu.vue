@@ -73,8 +73,11 @@
     }
     .clubLogo>img {
         margin-top: 30px;
+        transition: transform 0.6s;
     }
-
+    .clubLogo img:hover {
+        transform: scale(1.1);
+    }
     .lists {
         width: 750px;
         height: 100%;
