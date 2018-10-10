@@ -5,7 +5,7 @@
             <form>
                 <header>
                     <div class="info">
-                        <form-group id="InputBoard"
+                        <!--<form-group id="InputBoard"
                                     class="input_info"
                                     horizontal
                                     label="게시판:"
@@ -15,7 +15,7 @@
                                          :options="options"
                                          required>
                             </form-select>
-                        </form-group>
+                        </form-group>-->
                         <form-group id="InputTitle"
                                     class="input_info"
                                     horizontal
@@ -41,12 +41,12 @@
                     </div>
                 </header>
                 <form-group class="input_content"
-                            label="본문"
                             label-for="content">
+                    <!-- <div class="image_preview"><img v-if="this.file" :src="file"></div> <!-- 파일 업로드시 미리보기 -->
                     <form-textarea id="content"
                                    v-model="content"
                                    placeholder="내용"
-                                   :rows="3">
+                                   :rows="20">
                     </form-textarea>
                 </form-group>
             </form>
@@ -73,6 +73,9 @@
             FormInput,
             Form,
             Category
+        },
+        methods: {
+
         },
         data() {
             return {
@@ -114,7 +117,10 @@
     .DocumentWrite__Wrapper .input_info {
         margin: 10px 0;
     }
-    .submit_button {
+    .DocumentWrite__Wrapper .image_preview {
+        margin: 20px 0;
+    }
+    .DocumentWrite__Wrapper .submit_button {
         width: 100px;
         height: 40px;
         border-radius: 4px;
