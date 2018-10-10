@@ -2,6 +2,7 @@
     <div class="Login__Wrapper">
         <h1>Login</h1>
         <form class="wrap" v-on:submit.prevent="login">
+
             <div class="input">
                 <input type="text" v-model="id" placeholder="ID">
                 <input type="password" v-model="password" placeholder="Password">
@@ -9,6 +10,7 @@
             <div class="buttons">
                 <button type="submit" class="login">로그인</button>
             </div>
+
             <div class="others">
                 <router-link to="signup"><button class="other">회원가입</button></router-link>
                 <router-link to="find_id"><button class="other">아이디 찾기</button></router-link>

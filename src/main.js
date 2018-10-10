@@ -46,6 +46,10 @@ const routes = [
                 name: 'BoardDocument',
                 component: BoardDocument
             },
+            {
+                path: 'write',
+                name: 'BoardWrite',
+            }
         ]
     }
 ];

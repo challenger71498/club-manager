@@ -1,6 +1,11 @@
 <template>
     <div class="BoardList__Wrapper">
         <ListView :items="documents"></ListView>
+
+        <!-- { board_idx: 0 } 은 공지용으로 사용할 계획 -->
+        <router-link :to="{ name:'BoardWrite', params: { board_idx: 0 } }">
+            <button class="button">글쓰기</button>
+        </router-link>
     </div>
 </template>
 
@@ -20,6 +25,8 @@
                     writer_name: '작성자',
                     writer: idx,
                     view_count: 5,
+
+
                     total_comment: 5,
                     idx: 1234,
                     to: {
@@ -47,4 +54,12 @@
         background-color: #ffffff;
         margin: 20px auto;
     }
+    .button {
+         background: #059162;
+         color: #fff;
+         font-size: 13px;
+         margin-top: 10px;
+         width: 70px;
+         height: 35px;
+     }
 </style>

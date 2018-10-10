@@ -36,7 +36,6 @@
         padding: 10px;
         text-align: left;
         font-size: 13px;
-        text-align: center;
     }
     .ListView__Wrapper .tight {
         width: 1%;

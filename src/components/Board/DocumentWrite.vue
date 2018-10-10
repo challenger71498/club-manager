@@ -2,30 +2,19 @@
     <div class="DocumentWrite__Wrapper">
         <Category></Category>
         <section>
-            <form>
+            <form v-on:submit.prevent="submit">
                 <header>
                     <div class="info">
-                        <!--<form-group id="InputBoard"
-                                    class="input_info"
-                                    horizontal
-                                    label="게시판:"
-                                    label-for="board">
-                            <form-select id="board"
-                                         v-model="board"
-                                         :options="options"
-                                         required>
-                            </form-select>
-                        </form-group>-->
                         <form-group id="InputTitle"
                                     class="input_info"
                                     horizontal
                                     label="제목:"
                                     label-for="title">
                             <form-input id="title"
-                                          type="text"
-                                          v-model="title"
-                                          required
-                                          placeholder="제목">
+                                        type="text"
+                                        v-model="title"
+                                        required
+                                        placeholder="제목">
                             </form-input>
                         </form-group>
                         <form-group id="Inputfile"
@@ -34,8 +23,8 @@
                                     label="첨부파일:"
                                     label-for="file">
                             <form-file id="file"
-                                        v-model="file"
-                                        placeholder="첨부파일">
+                                       v-model="file"
+                                       placeholder="첨부파일">
                             </form-file>
                         </form-group>
                     </div>
@@ -45,12 +34,13 @@
                     <!-- <div class="image_preview"><img v-if="this.file" :src="file"></div> <!-- 파일 업로드시 미리보기 -->
                     <form-textarea id="content"
                                    v-model="content"
+                                   required
                                    placeholder="내용"
                                    :rows="20">
                     </form-textarea>
                 </form-group>
             </form>
-            <button class="submit_button">완료</button>
+            <button type="submit" class="submit">완료</button>
         </section>
     </div>
 </template>
@@ -63,6 +53,7 @@
     import FormSelect from "bootstrap-vue/src/components/form-select/form-select";
     import FormFile from "bootstrap-vue/src/components/form-file/form-file";
     import FormTextarea from "bootstrap-vue/src/components/form-textarea/form-textarea";
+
     export default {
         name: "document-write",
         components: {
@@ -74,10 +65,14 @@
             Form,
             Category
         },
-        methods: {
 
+        methods: {
+            submit () {
+                alert('Title: ${this.title}\nInputFile: ${this.file}\nContent: ${this.content}');
+            }
         },
-        data() {
+
+        data () {
             return {
                 options: [
                     { value: null, text: "선택" },
@@ -89,7 +84,7 @@
                 board: '',
                 file: '',
                 content: '',
-            }
+            };
         }
     }
 </script>
@@ -97,7 +92,7 @@
 <style scoped>
     section {
         width: 1200px;
-        margin: 0 auto;
+        margin: 0px auto;
     }
     header {
         border-top: 3px solid #444;
@@ -117,20 +112,25 @@
     .DocumentWrite__Wrapper .input_info {
         margin: 10px 0;
     }
+    .DocumentWrite__Wrapper textarea{
+
+    }
     .DocumentWrite__Wrapper .image_preview {
         margin: 20px 0;
     }
-    .DocumentWrite__Wrapper .submit_button {
+    .DocumentWrite__Wrapper .submit {
         width: 100px;
         height: 40px;
         border-radius: 4px;
-        background-color: #e8e8e8;
-        border: 1px solid lightgray;
+        background: #059162;
+        border: 3px solid #e8e8e8;
+        color: #fff;
         float: right;
     }
     section:after {
         clear: both;
         content: '';
         display: block;
+        margin-bottom: 200px;
     }
 </style>
