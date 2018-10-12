@@ -21,6 +21,9 @@
                 <img :src=image :alt=alt>
             </div>
             {{ content }}
+            <router-link :to="{ name:'BoardWrite', params: { board_idx: 0 } }">
+                <button class="button">글 수정</button>
+            </router-link>
         </article>
         <div class="comments">
             <h4>댓글 ({{total_comment}})</h4>
@@ -117,8 +120,17 @@
 
     .BoardDocument__Wrapper article {
         padding: 10px;
+        margin-bottom: 50px;
     }
-
+    .button {
+        background: #059162;
+        color: #fff;
+        font-size: 13px;
+        margin-top: 10px;
+        width: 60px;
+        height: 25px;
+        float: right;
+    }
     .BoardDocument__Wrapper .comments h4 {
         border: solid #ddd;
         border-width: 1px 0;

@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$http = axios;
 Vue.use(VueRouter);
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
 
 Vue.prototype.$EventBus = new Vue();
 
@@ -21,17 +22,18 @@ import BoardLayout from './components/Board/Layout.vue';
 import BoardList from './components/Board/List.vue'
 import BoardDocument from './components/Board/Document.vue'
 import WriteDocument from './components/Board/DocumentWrite.vue'
+import axiostest from './components/axiostest.vue'
 
 const routes = [
     { path: '/', component: MainPage },
     { path: '/intro', component: WelcomePage },
     { path: '/login', component: Login },
+    // { path: '/test', component: axiostest },
     {
         path: '/signup',
         name: 'SignUp',
         component: SignUp
     },
-    { path: '/write', component: WriteDocument },
     {
         path: '/board/:board_idx(\\d+)',
         component: BoardLayout,
@@ -49,6 +51,7 @@ const routes = [
             {
                 path: 'write',
                 name: 'BoardWrite',
+                component: WriteDocument,
             }
         ]
     }
