@@ -4,8 +4,8 @@
         <form class="wrap" v-on:submit.prevent="login">
 
             <div class="input">
-                <input type="text" v-model="id" placeholder="ID">
-                <input type="password" v-model="password" placeholder="Password">
+                <input type="text" v-model="id" placeholder="ID" autocomplete="on">
+                <input type="password" v-model="password" placeholder="Password" autocomplete="on">
             </div>
             <div class="buttons">
                 <button type="submit" class="login">로그인</button>
