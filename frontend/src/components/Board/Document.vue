@@ -25,7 +25,7 @@
                 <button class="button">글 수정</button>
             </router-link>
         </article>
-        <div class="comments">
+        <div class="comments" v-if="!is_notice">
             <h4>댓글 ({{this.total_comment}})</h4>
             <CommentList :comments="comments"></CommentList>
         </div>
@@ -50,6 +50,10 @@
             },
             total_comment() {
                 return this.comments.length;
+            },
+            is_notice() {
+                if(this.boardIdx === 0) return true;
+                else return false;
             }
         },
         data() {
@@ -61,7 +65,7 @@
                     view_count: 0,
                     content: ''
                 },
-                comments: []
+                comments: [],
             }
         },
         created () {
@@ -72,9 +76,10 @@
                 this.document.view_count = response.data.view_count;
                 this.document.content = response.data.content;
             });
-
-            this.$http.get("/api/boards/" + this.boardIdx + "/documents/" + this.documentIdx +"/comments")
-                .then(response => { this.comments = response.data; console.log(this.comments) });
+            if(!this.is_notice) {
+                this.$http.get("/api/boards/" + this.boardIdx + "/documents/" + this.documentIdx +"/comments")
+                    .then(response => { this.comments = response.data; console.log(this.comments) });
+            }
         }
     };
 </script>
