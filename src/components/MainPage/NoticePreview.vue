@@ -32,7 +32,6 @@
     h1 {
         position: relative;
         height: 80%;
-        position: relative;
         font: 20px lighter;
         margin: 30px;
         padding-right: 30px;
