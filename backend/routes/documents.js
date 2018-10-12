@@ -3,13 +3,13 @@ const mysql = require('../libs/mysql');
 const Message = require('../libs/message');
 const router = express.Router();
 
-router.get('/recent',mysql.use(),async(req,res,next)=>{
+router.get('/recent', mysql.use(), async (req, res, next) => {
    let count = parseInt(req.query.count) || 10;
-   let result=req.mysql.query(
+   let items = req.mysql.query(
        'SELECT * FROM `document` WHERE ORDER BY `register_date` DESC LIMIT ?',
-       [count]
+       [ count ]
    );
-   res.send({items:result});
+   res.send({ items });
 });
 
 module.exports = router;
