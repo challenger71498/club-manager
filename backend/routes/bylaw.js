@@ -8,10 +8,10 @@ const router = express.Router();
 
 router.get('/', mysql.use(), async (req, res, next) => {
 
-    let result = await req.mysql.query(
+    let items = await req.mysql.query(
         'SELECT * FROM `bylaw`'
     );
-    res.send(result);
+    res.send({items});
 });
 
 router.get('/:idx(\\d+)', mysql.use(), async (req, res, next) => {

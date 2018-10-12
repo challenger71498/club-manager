@@ -11,10 +11,10 @@ router.use('/:group_idx/members', require('./memberofgroup'));
 router.use(mysql.use());
 
 router.get('/', async (req, res, next) => {
-    let result = await req.mysql.query(
+    let items = await req.mysql.query(
         'SELECT * FROM `group`'
     );
-    res.send(result);
+    res.send({items});
 });
 router.get('/:idx(\\d+)', async (req, res, next) => {
 

@@ -36,10 +36,10 @@ router.get('/', async (req, res, next) => {
         throw Message.NOT_GRANTED;
     }
 
-    let result = await req.mysql.query(
+    let items = await req.mysql.query(
         'SELECT * FROM `memberofgroup`'
     );
-    res.send(result);
+    res.send({ items });
 });
 
 router.post('/', passport.jwt(),async (req, res, next) => {
