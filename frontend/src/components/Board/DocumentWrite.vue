@@ -63,23 +63,48 @@
             Form,
             Category
         },
-
+        computed: {
+            board_idx() {
+                return this.$route.params.board_idx;
+            },
+            document_idx() {
+                return this.$route.params.document_idx;
+            }
+        },
         methods: {
             submit () {
-                this.$http.post('/api/notices',{
-                    title: this.title,
-                    file: this.file,
-                    content: this.content
-                }).then(response=> {
-                    this.$router.push({name: 'BoardDocument', params: { borad_idx: 0, document_idx: response.data.idx }});
-                }).catch(err =>{
-                    if (!err.response.data || !err.response.data.message)
-                    {
-                        alert('알 수 없는 오류가 발생하였습니다.');
-                        return;
-                    }
-                    alert(err.response.data.message);
-                });
+                if(this.$route.params.board_idx === 0) {
+                    this.$http.post('/api/notices',{
+                        title: this.title,
+                        file: this.file,
+                        content: this.content
+                    }).then(response=> {
+                        this.$router.push({name: 'BoardDocument', params: { borad_idx: 0, document_idx: response.data.idx }});
+                    }).catch(err =>{
+                        if (!err.response.data || !err.response.data.message)
+                        {
+                            alert('알 수 없는 오류가 발생하였습니다.');
+                            return;
+                        }
+                        alert(err.response.data.message);
+                    });
+                }
+                else {
+                    this.$http.post('/api/boards/' + this.board_idx + '/documents',{
+                        title: this.title,
+                        file: this.file,
+                        content: this.content
+                    }).then(response=> {
+                        this.$router.push({name: 'BoardDocument', params: { borad_idx: this.board_idx, document_idx: response.data.idx }});
+                    }).catch(err =>{
+                        if (!err.response.data || !err.response.data.message)
+                        {
+                            alert('알 수 없는 오류가 발생하였습니다.');
+                            return;
+                        }
+                        alert(err.response.data.message);
+                    });
+                }
             }
         },
 

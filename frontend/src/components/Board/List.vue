@@ -3,7 +3,7 @@
         <ListView :items="documents"></ListView>
 
         <!-- { board_idx: 0 } 은 공지용으로 사용할 계획 -->
-        <router-link :to="{ name:'BoardWrite', params: { board_idx: 0 } }">
+        <router-link :to="{ name:'BoardWrite', params: { board_idx: this.board_idx } }">
             <button class="button">글쓰기</button>
         </router-link>
     </div>
@@ -15,34 +15,42 @@
     export default {
         name: "BoardList",
         components: { ListView },
-        data () {
-            function dummy(idx) {
-                return {
-                    title: `제목${idx}`,
-                    register_date: new Date().toISOString().substr(0, 10),
-                    content: '글내용',
-                    image: 'https://dummyimage.com/300x300/000/fff',
-                    writer_name: '작성자',
-                    writer: idx,
-                    view_count: 5,
+        computed: {
+            board_idx () {
+                return parseInt(this.$route.params.board_idx);
+            },
 
-                    total_comment: 5,
-                    idx: 1234,
-                    to: {
-                        name: 'BoardDocument',
-                        params: {
-                            board_idx: 1,
-                            document_idx: idx,
-                        },
+            documents () {
+                return this.items.map(item => {
+                    return {
+                        ...item,
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: this.board_idx,
+                                document_idx: item.idx
+                            }
+                        }
                     }
-                };
+                });
             }
-
-            let documents = new Array(10).fill(0).map((v, i) => dummy(i));
-
+        },
+        created () {
+            if (this.board_idx === 0) {
+                this.$http.get("/api/notices").then(response => {
+                    this.items = response.data.items;
+                });
+            }
+            else {
+                this.$http.get("/api/boards").then(response => {
+                    this.items = response.data.items;
+                });
+            }
+        },
+        data () {
             return {
-                documents
-            };
+                items: []
+            }
         }
     }
 </script>
