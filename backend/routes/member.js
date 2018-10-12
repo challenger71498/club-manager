@@ -14,6 +14,11 @@ router.get('/', mysql.use(), async (req, res, next) => {
     );
     res.send(result[0]);
 });
+
+router.get('/token', passport.jwt(), async (req, res, next)=> {
+    res.send(req.member);
+});
+
 /**
  * Login
  */
