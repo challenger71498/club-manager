@@ -23,22 +23,9 @@
 <script>
     export default {
         methods: {
-            login () {
-                this.$http.post('/api/members/token', {
-                    id: this.id,
-                    password: this.password
-                }).then(response => {
-                    localStorage.token = response.data.token;
-                    this.$http.defaults.headers.common['X-Token'] = localStorage.token;
-                    this.$router.push({ name: 'Main' });
-                }).catch(err => {
-                    if (!err.response.data || !err.response.data.message) {
-                        alert('알 수 없는 오류가 발생했습니다.');
-                        return;
-                    }
-
-                    alert(err.response.data.message);
-                });
+            async login () {
+                await this.$member.login(this.id, this.password);
+                this.$router.push({ name: 'Main' });
             }
         },
 

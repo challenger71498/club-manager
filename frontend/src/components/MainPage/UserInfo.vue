@@ -1,10 +1,10 @@
 <template>
     <div class="userinfo">
         <div class="wrap">
-            <img class="picture" :src="user.picture" :alt="user.userName">
+            <img class="picture" :src="profile" :alt="name">
             <div class="contents">
-                <p class="user-name">{{user.userName}}</p>
-                <p class="user-level">{{user.userLevel}}</p>
+                <p class="user-name">{{ name }}</p>
+                <p class="user-level">{{ level }}</p>
             </div>
             <div class="buttons">
                 <button type="button">계정설정</button>
@@ -16,23 +16,17 @@
 
 <script>
     export default {
-        name: "UserInfo",
+        name: 'UserInfo',
         props: {
-            user : {
-                userName : String,
-                studentGrade : Number,
-                userMajor : String,
-                userLevel : String,
-                picture : String
-            }
+            name : String,
+            level : Number,
+            profile : String,
         },
         methods: {
             logout() {
-                localStorage.token = null;
-                delete this.$http.defaults.headers.common['X-Token'];
-                this.$emit("logout")
-            }
-        }
+                this.$emit('logout');
+            },
+        },
     }
 </script>
 

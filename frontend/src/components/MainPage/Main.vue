@@ -2,7 +2,7 @@
     <div class="wrap">
         <Carousel class="carousel"></Carousel>
         <div class="contents">
-            <UserInfo v-if="isLogged" class="user" :user="user" @logout="onLogout"></UserInfo>
+            <UserInfo v-if="$member.isLogged" class="user" v-bind="$member.$data" @logout="onLogout"></UserInfo>
             <Login v-else class="user" @login="onLogin"></Login>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
             <PhotoPreview :photos="photos"></PhotoPreview>
@@ -30,14 +30,12 @@
             DocumentPreview,
         },
         methods: {
-            onLogin(member) {
-                this.isLogged = true;
-                this.user.userName = member.name;
-                this.user.userLevel = member.level;
+            onLogin(id, password) {
+                this.$member.login(id, password);
             },
 
             onLogout() {
-                this.isLogged = false;
+                this.$member.logout();
             }
         },
         created() {
@@ -81,17 +79,11 @@
         },
         data() {
             return {
-                isLogged : false,
                 menu : [
                     { text: 'ABOUT US', link: '/' },
                     { text: '게시판', link: '/' },
                     { text: '모임', link: '/' },
                 ],
-                user : {
-                    userName : '',
-                    userLevel : '',
-                    picture : require("../../assets/if_profle_1055000.png"),
-                },
                 noticeItems : [],
                 photos : [
                     "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&h=3500",
@@ -103,14 +95,6 @@
                 ],
                 documents : []
             }
-        },
-        mounted () {
-            this.isLogged = Boolean(localStorage.token);
-
-            this.$http.get('/api/members/token').then(response => {
-                this.user.userName = response.data.name;
-                this.user.userLevel = response.data.level;
-            });
         }
     }
 </script>
@@ -119,16 +103,20 @@
     .wrap {
         position: relative;
     }
+
     .contents {
         width: 1220px;
         margin: 10px auto;
     }
+
     .contents > * {
         float: left;
         margin: 10px;
     }
+
     .user {
     }
+
     .notice-preview {
     }
 </style>

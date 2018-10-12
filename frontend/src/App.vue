@@ -58,11 +58,6 @@
                     },
                 ]
             };
-        },
-        created () {
-            if (localStorage.token) {
-                this.$http.defaults.headers.common['X-Token'] = localStorage.token;
-            }
         }
     }
 </script>
