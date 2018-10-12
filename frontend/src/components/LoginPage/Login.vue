@@ -29,6 +29,7 @@
                     password: this.password
                 }).then(response => {
                     localStorage.token = response.data.token;
+                    this.$http.defaults.headers.common['X-Token'] = localStorage.token;
                     this.$router.push({ name: 'Main' });
                 }).catch(err => {
                     if (!err.response.data || !err.response.data.message) {
