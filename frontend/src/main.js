@@ -24,7 +24,7 @@ import BoardDocument from './components/Board/Document.vue'
 import WriteDocument from './components/Board/DocumentWrite.vue'
 
 const routes = [
-    { path: '/', component: MainPage },
+    { path: '/', component: MainPage, name: 'Main' },
     { path: '/intro', component: WelcomePage },
     { path: '/login', component: Login },
     {

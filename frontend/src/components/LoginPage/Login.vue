@@ -29,12 +29,15 @@
                     password: this.password
                 }).then(response => {
                     localStorage.token = response.data.token;
-                }).then(() => {
-                    alert(localStorage.token);
-                });
-                // this.$http.defaults.headers.common['X-Token'] = ???;
+                    this.$router.push({ name: 'Main' });
+                }).catch(err => {
+                    if (!err.response.data || !err.response.data.message) {
+                        alert('알 수 없는 오류가 발생했습니다.');
+                        return;
+                    }
 
-                // alert(`ID: ${this.id}\nPW: ${this.password}`);
+                    alert(err.response.data.message);
+                });
             }
         },
 
