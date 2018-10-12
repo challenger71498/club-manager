@@ -17,20 +17,15 @@
 
 <script>
     export default {
-        // 21~29번째 줄은 무슨 용도?
-        props: {
-            user : {
-                userName : String,
-                studentGrade : Number,
-                userMajor : String,
-                userLevel : String,
-                picture : String
-            }
-        },
-
         methods: {
             join () {
                 alert(`ID: ${this.id}\nPW: ${this.password}\nNAME: ${this.name}\nsNum: ${this.student_number}`);
+                this.$http.post('/api/members', {
+                    id: this.id,
+                    password: this.password,
+                    name: this.name,
+                    student_number: this.student_number
+                });
             }
         },
 
@@ -39,7 +34,7 @@
                 id: '',
                 password: '',
                 name: '',
-                student_number: ''
+                student_number: '',
             }
         }
     }
