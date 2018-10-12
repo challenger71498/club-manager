@@ -26,7 +26,6 @@
                     writer: idx,
                     view_count: 5,
 
-
                     total_comment: 5,
                     idx: 1234,
                     to: {
