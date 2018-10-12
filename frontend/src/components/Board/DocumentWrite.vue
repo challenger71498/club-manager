@@ -1,6 +1,5 @@
 <template>
     <div class="DocumentWrite__Wrapper">
-        <Category></Category>
         <section>
             <form v-on:submit.prevent="submit">
                 <header>
