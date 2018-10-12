@@ -7,8 +7,8 @@
                 <p class="user-level">{{user.userLevel}}</p>
             </div>
             <div class="buttons">
-                <button>계정설정</button>
-                <button>로그아웃</button>
+                <button type="button">계정설정</button>
+                <button type="button" @click="logout">로그아웃</button>
             </div>
         </div>
     </div>
@@ -24,6 +24,13 @@
                 userMajor : String,
                 userLevel : String,
                 picture : String
+            }
+        },
+        methods: {
+            logout() {
+                localStorage.token = null;
+                delete this.$http.defaults.headers.common['X-Token'];
+                this.$emit("logout")
             }
         }
     }

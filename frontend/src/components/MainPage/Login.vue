@@ -24,7 +24,8 @@
                     password: this.password
                 }).then(response => {
                     localStorage.token = response.data.token;
-                    this.$router.push({ name: 'Main' });
+                    // this.$router.push({ name: 'Main' });
+                    this.$emit("login", response.data);
                 }).catch(err => {
                     if (!err.response.data || !err.response.data.message) {
                         alert('알 수 없는 오류가 발생했습니다.');
