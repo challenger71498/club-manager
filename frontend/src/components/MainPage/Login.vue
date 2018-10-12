@@ -6,7 +6,7 @@
                 <input type="password" v-model="password" placeholder="Password">
             </div>
             <div class="buttons">
-                <button type="submit" class="big">로그인</button>
+                <button type="submit" class="big" @click="login">로그인</button>
                 <router-link to="signup"><button class="big">회원가입</button></router-link>
                 <router-link to="find_id"><button class="small">아이디 찾기</button></router-link>
                 <router-link to="find_password"><button class="small">비밀번호 찾기</button></router-link>
@@ -17,19 +17,23 @@
 
 <script>
     export default {
-        props: {
-            user : {
-                userName : String,
-                studentGrade : Number,
-                userMajor : String,
-                userLevel : String,
-                picture : String
-            }
-        },
-
         methods: {
             login () {
-                alert(`ID: ${this.id}\nPW: ${this.password}`);
+                this.$http.post('/api/members/token', {
+                    id: this.id,
+                    password: this.password
+                }).then(response => {
+                    localStorage.token = response.data.token;
+                    this.$router.push({ name: 'Main' });
+                }).catch(err => {
+                    if (!err.response.data || !err.response.data.message) {
+                        alert('알 수 없는 오류가 발생했습니다.');
+                        return;
+                    }
+
+                    alert(err.response.data.message);
+                });
+                // alert(`ID: ${this.id}\nPW: ${this.password}`);
             }
         },
 
