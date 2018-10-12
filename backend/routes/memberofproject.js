@@ -57,7 +57,7 @@ router.get('/', async (req, res, next) => {
     let result = await req.mysql.query(
         'SELECT * FROM `memberofproject`'
     );
-    res.send(result);
+    res.send({items:result});
 });
 
 

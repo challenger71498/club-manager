@@ -39,7 +39,7 @@ router.get('/', async (req, res, next) => {
     let result = await req.mysql.query(
         'SELECT * FROM `memberofgroup`'
     );
-    res.send(result);
+    res.send({items:result});
 });
 
 router.post('/', passport.jwt(),async (req, res, next) => {

@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
     let result = await req.mysql.query(
         'SELECT * FROM `project`'
     );
-    res.send(result);
+    res.send({items:result});
 });
 router.get('/:idx(\\d+)', async (req, res, next) => {
 
