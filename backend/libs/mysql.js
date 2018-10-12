@@ -17,7 +17,7 @@ module.exports = {
         let connection = await pool.getConnection();
 
         let release = function() {
-            if (!isReleased) return;
+            if (isReleased) return;
             connection.release();
             isReleased = true;
         };
