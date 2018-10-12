@@ -25,7 +25,7 @@
                     password: this.password,
                     name: this.name,
                     student_number: this.student_number
-                }).then(res => {alert(res)});
+                });
             }
         },
 
