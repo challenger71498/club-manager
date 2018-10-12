@@ -2,8 +2,8 @@
     <div class="wrap">
         <Carousel class="carousel"></Carousel>
         <div class="contents">
-            <UserInfo v-if="isLogged" class="user" :user="user"></UserInfo>
-            <Login v-else class="user"></Login>
+            <UserInfo v-if="isLogged" class="user" :user="user" @logout="onLogout"></UserInfo>
+            <Login v-else class="user" @login="onLogin"></Login>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
             <PhotoPreview :photos="PhotoPreviewData"></PhotoPreview>
             <DocumentPreview :list="DocumentPreviewData"></DocumentPreview>
@@ -29,6 +29,17 @@
             PhotoPreview,
             DocumentPreview,
         },
+        methods: {
+            onLogin(member) {
+                this.isLogged = true;
+                this.user.userName = member.name;
+                this.user.userLevel = member.level;
+            },
+
+            onLogout() {
+                this.isLogged = false;
+            }
+        },
         data() {
             return {
                 isLogged : false,
@@ -38,8 +49,8 @@
                     { text: '모임', link: '/' },
                 ],
                 user : {
-                    userName : "김시진",
-                    userLevel : "준회원",
+                    userName : '',
+                    userLevel : '',
                     picture : require("../../assets/if_profle_1055000.png"),
                 },
                 noticePreview : [
@@ -159,6 +170,14 @@
                     },
                 ]
             }
+        },
+        mounted () {
+            this.isLogged = Boolean(localStorage.token);
+
+            this.$http.get('/api/members/token').then(response => {
+                this.user.userName = response.data.name;
+                this.user.level = response.data.level;
+            });
         }
     }
 </script>
