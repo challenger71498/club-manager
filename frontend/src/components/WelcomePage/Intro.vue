@@ -26,8 +26,8 @@
                 </div>
             </section>
 
-            <section class="social_impacts">
-                <a id="social_impacts" class="anchor"></a>
+            <section class="history">
+                <a id="history" class="anchor"></a>
 
                 <div class="clearfix">
                     <img src="../../assets/hackathon.png" class="left img">
