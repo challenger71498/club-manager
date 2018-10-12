@@ -22,9 +22,8 @@ router.get('/:idx(\\d+)', async (req, res, next) => {
     let result = await req.mysql.query(
         'SELECT * FROM `board` WHERE idx=?',
         [idx]
-
     );
-    res.send(result);
+    res.send(result[0]);
 });
 
 router.post('/', passport.jwt(), async (req, res, next) => {
@@ -35,12 +34,15 @@ router.post('/', passport.jwt(), async (req, res, next) => {
 
     type = (type === 'gallery') ? 'GALLERY' : 'LIST';
 
-    let result = await req.mysql.query(
+    let result1 = await req.mysql.query(
         'INSERT INTO `board` (`type`,`name`) VALUES (?, ?)',
         [type, name]
     );
-
-    res.send(result);
+    let result2 = await req.mysql.query(
+        'SELECT * FROM `board` WHERE idx=?',
+        [result1.insertId]
+    );
+    res.send(result2[0]);
 });
 
 router.patch('/:idx(\\d+)', passport.jwt(),async (req, res, next) => {
@@ -52,11 +54,15 @@ router.patch('/:idx(\\d+)', passport.jwt(),async (req, res, next) => {
 
     type = (type === 'gallery') ? 'GALLERY' : 'LIST';
 
-    let result = await req.mysql.query(
+    let result1 = await req.mysql.query(
         'UPDATE board SET type=?, name=? WHERE idx=?',
         [type, name, idx]
     );
-    res.send(`게시판 수정: ${idx}`);
+    let result2 =await req.mysql.query(
+        'SELECT * FROM `board WHERE idx=?',
+        [idx]
+    );
+    res.send(result2[0]);
 });
 
 //   경로가 '/숫자'이고 DELETE 방식으로 요청했을 때
@@ -69,6 +75,6 @@ router.delete('/:idx(\\d+)', passport.jwt(), async (req, res, next) => {
         'DELETE FROM board WHERE idx=?',
         [idx]
     );
-    res.send(`게시판 삭제: ${idx}`);
+    res.send(true);
 });
 module.exports=router;

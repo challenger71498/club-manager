@@ -49,6 +49,10 @@ class Message {
     static get PROJECT_ALREADY_JOINED(){
         return new Message(400, 'PROJECT_ALREADY_JOINED', '이미 가입된 프로젝트입니다');
     }
+
+    static INVALID_PARAMETER(name) {
+        return new Message(400, `INVALID_PARAMETER:${name}`, `잘못된 ${name}이(가) 전송되었습니다.`)
+    }
 }
 
 module.exports = Message;

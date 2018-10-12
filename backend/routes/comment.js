@@ -12,7 +12,7 @@ router.use(mysql.use(), async (req, res, next) => {
     let documentIdx = parseInt(req.params.document_idx);
 
     let result = await req.mysql.query(
-        'SELECT * FROM `document` WHERE `idx` = ?',
+        'SELECT * FROM `comment` WHERE `idx` = ?',
         [documentIdx]
     );
 
@@ -28,30 +28,36 @@ router.use(mysql.use(), async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
 
-    let result = await req.mysql.query(
-        'SELECT * FROM `comment`'
-    );
-    res.send(result);
-});
-router.get('/:idx(\\d+)', async (req, res, next) => {
+    let { page } = req.query;
+    page = parseInt(page) || 1;
+    if (page < 1) page = 1;
 
-    let idx = parseInt(req.params.idx);
-    let result = await req.mysql.query(
-        'SELECT * FROM `comment` WHERE idx=?',
-        [idx]
+    const count = 20;
 
+    let result2 = await req.mysql.query(
+        'SELECT * FROM `comment` WHERE ORDER BY `idx` DESC LIMIT ?,?',
+        [ (page - 1) * count, count ]
     );
-    res.send(result);
+
+    res.send({
+        page,
+        total: result1[0].count,
+        count,
+        items: result2
+    });
 });
 
 router.post('/', passport.jwt(), async (req, res, next) => {
     let { content } = req.body;
-    let result = await req.mysql.query(
+    let result1 = await req.mysql.query(
         'INSERT INTO `comment` (`document_idx`, `content`, `writer`, `writer_name`) VALUES (?, ?, ?, ?)',
         [ req.document.idx, content, req.member.idx, req.member.name ]
     );
-
-    res.send(result);
+    let result2= await req.mysql.query(
+        'SELECT * FROM `comment` WHERE idx=?',
+        [result1.insertId]
+    );
+    res.send(result2[0]);
 });
 
 router.patch('/:idx(\\d+)', passport.jwt(),async (req, res, next) => {
@@ -61,11 +67,15 @@ router.patch('/:idx(\\d+)', passport.jwt(),async (req, res, next) => {
     }
     let { content } = req.body;
 
-    let result = await req.mysql.query(
+    let result1 = await req.mysql.query(
         'UPDATE comment SET content=? WHERE idx=?',
         [content, idx]
     );
-    res.send(`댓글 수정: ${idx}`);
+    let result2 = await req.mysql.query(
+        'SELECT * FROM `comment` WHERE idx=?',
+        [idx]
+    );
+    res.send(result2[0]);
 });
 
 //   경로가 '/숫자'이고 DELETE 방식으로 요청했을 때
@@ -78,7 +88,7 @@ router.delete('/:idx(\\d+)', passport.jwt(), async (req, res, next) => {
         'DELETE FROM comment WHERE idx=?',
         [idx]
     );
-    res.send(`댓글 삭제: ${idx}`);
+    res.send(true);
 });
 
 module.exports=router;

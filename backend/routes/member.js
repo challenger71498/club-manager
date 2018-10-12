@@ -12,7 +12,7 @@ router.get('/', mysql.use(), async (req, res, next) => {
     let result = await req.mysql.query(
         'SELECT * FROM `member`'
     );
-    res.send(result);
+    res.send(result[0]);
 });
 /**
  * Login
@@ -46,14 +46,35 @@ router.post('/token', mysql.use(), async (req, res, next) => {
 router.post('/', mysql.use(),  async (req, res, next) => {
     let { id, password, name, student_number } = req.body;
 
+    if (!id) {
+        throw Message.INVALID_PARAMETER('id');
+    }
+
+    if (!password) {
+        throw Message.INVALID_PARAMETER('password');
+    }
+
+    if (!name) {
+        throw Message.INVALID_PARAMETER('name');
+    }
+
+    if (!student_number) {
+        throw Message.INVALID_PARAMETER('student_number');
+    }
+
     password = security.sha512(password);
 
-    let result = await req.mysql.query(
+    let result1 = await req.mysql.query(
         'INSERT INTO `member` (`id`, `password`, `name`, `student_number`) VALUES (?, ?, ?, ?)',
         [id, password, name, student_number]
     );
 
-    res.send(result);
+    let result2 = await req.mysql.query(
+        'SELECT * FROM `member` WHERE `idx` = ?',
+        [result1.insertId]
+    );
+
+    res.send(result2[0]);
 }, async (err, req, res, next) => {
     if (err.code === 'ER_DUP_ENTRY') {
         throw Message.DUPLICATED_ID;
@@ -75,12 +96,15 @@ router.patch('/:idx(\\d+)', passport.jwt(), mysql.use(), async (req, res, next) 
     let password = req.body.password;
     let name = req.body.name;
     let student_number = req.body.student_number;
-    let result = await req.mysql.query(
+    let result1 = await req.mysql.query(
         'UPDATE member SET id=?, password=?, name=?, student_number=? WHERE idx=?',
         [id, password, name, student_number,idx]
     );
-    res.send(`회원정보 수정: ${idx}`);
-    res.send(result);
+    let result2 = await req.mysql.query(
+        'SELECT * FROM `member` WHERE idx=?',
+        [idx]
+    );
+    res.send(result2[0])
 });
 
 //   경로가 '/숫자'이고 DELETE 방식으로 요청했을 때
@@ -95,7 +119,7 @@ router.delete('/:idx(\\d+)', passport.jwt(),mysql.use(), async (req, res, next) 
         [idx]
     );
 
-    res.send(`회원 탈퇴: ${idx}`);
+    res.send(true);
 });
 
 // 이렇게 router라는걸 만들어서 내보내는데, 내보낸걸 어떻게 쓰냐면
