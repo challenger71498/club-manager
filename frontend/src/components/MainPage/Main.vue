@@ -5,8 +5,8 @@
             <UserInfo v-if="isLogged" class="user" :user="user" @logout="onLogout"></UserInfo>
             <Login v-else class="user" @login="onLogin"></Login>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
-            <PhotoPreview :photos="PhotoPreviewData"></PhotoPreview>
-            <DocumentPreview :list="DocumentPreviewData"></DocumentPreview>
+            <PhotoPreview :photos="photos"></PhotoPreview>
+            <DocumentPreview :list="documents"></DocumentPreview>
         </div>
     </div>
 </template>
@@ -43,7 +43,25 @@
         created() {
             this.$http.get("/api/notices").then(response => {
                 this.noticeItems = response.data.items.slice(0, 5);
-            })
+            }).catch(err => {
+                if (!err.response.data || !err.response.data.message) {
+                    alert('알 수 없는 오류가 발생했습니다.');
+                    return;
+                }
+
+                alert(err.response.data.message);
+            });
+            this.$http.get("/api/documents/recent?count=7").then(response => {
+                this.documents = response.data.items;
+                console.log(this.documents)
+            }).catch(err => {
+                if (!err.response.data || !err.response.data.message) {
+                    alert('알 수 없는 오류가 발생했습니다.');
+                    return;
+                }
+
+                alert(err.response.data.message);
+            });
         },
         computed: {
             noticePreview() {
@@ -75,7 +93,7 @@
                     picture : require("../../assets/if_profle_1055000.png"),
                 },
                 noticeItems : [],
-                PhotoPreviewData : [
+                photos : [
                     "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&h=3500",
                     "https://images.pexels.com/photos/315191/pexels-photo-315191.jpeg?auto=compress&cs=tinysrgb&h=350,",
                     "https://images.pexels.com/photos/378570/pexels-photo-378570.jpeg?auto=compress&cs=tinysrgb&h=350",
@@ -83,107 +101,7 @@
                     "https://images.pexels.com/photos/825262/pexels-photo-825262.jpeg?auto=compress&cs=tinysrgb&h=350",
                     "https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&h=350"
                 ],
-                DocumentPreviewData : [
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-
-                    {
-                        to: {
-                            name: 'BoardDocument',
-                            params: {
-                                board_idx: 1,
-                                document_idx: 1,
-                            },
-                        },
-                        idx: 1234,
-                        title: "글 제목",
-                        register_date: new Date().toISOString().substr(0, 10),
-                        writer_name: '작성자',
-                        view_count: 5
-                    },
-                ]
+                documents : []
             }
         },
         mounted () {
