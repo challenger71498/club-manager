@@ -30,7 +30,6 @@
                 </header>
                 <form-group class="input_content"
                             label-for="content">
-                    <!-- <div class="image_preview"><img v-if="this.file" :src="file"></div> <!--파일 업로드시 미리보기 -->
                     <form-textarea id="content"
                                    v-model="content"
                                    required
