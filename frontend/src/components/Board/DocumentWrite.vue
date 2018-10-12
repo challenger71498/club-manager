@@ -70,6 +70,8 @@
                     title: this.title,
                     file: this.file,
                     content: this.content
+                }).then(response=> {
+                    this.$router.push({name: 'BoardDocument', params: { document_idx: response.data.idx }});
                 }).catch(err =>{
                     if (!err.response.data || !err.response.data.message)
                     {

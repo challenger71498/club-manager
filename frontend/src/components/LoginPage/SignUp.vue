@@ -19,12 +19,21 @@
     export default {
         methods: {
             join () {
-                alert(`ID: ${this.id}\nPW: ${this.password}\nNAME: ${this.name}\nsNum: ${this.student_number}`);
+                // alert(`ID: ${this.id}\nPW: ${this.password}\nNAME: ${this.name}\nsNum: ${this.student_number}`);
                 this.$http.post('/api/members', {
                     id: this.id,
                     password: this.password,
                     name: this.name,
                     student_number: this.student_number
+                }).then(() => {
+                    this.$router.push({ name: "Main" });
+                }).catch(err =>{
+                    if (!err.response.data || !err.response.data.message)
+                    {
+                        alert('알 수 없는 오류가 발생하였습니다.');
+                        return;
+                    }
+                    alert(err.response.data.message);
                 });
             }
         },
