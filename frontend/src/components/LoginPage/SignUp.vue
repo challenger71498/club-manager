@@ -19,7 +19,7 @@
     export default {
         methods: {
             join () {
-                // alert(`ID: ${this.id}\nPW: ${this.password}\nNAME: ${this.name}\nsNum: ${this.student_number}`);
+                alert(`ID: ${this.id}\nPW: ${this.password}\nNAME: ${this.name}\nsNum: ${this.student_number}`);
                 this.$http.post('/api/members', {
                     id: this.id,
                     password: this.password,

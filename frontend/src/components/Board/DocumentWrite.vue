@@ -37,8 +37,8 @@
                                    :rows="20">
                     </form-textarea>
                 </form-group>
+                <button type="submit" class="submit">완료</button>
             </form>
-            <button type="submit" class="submit">완료</button>
         </section>
     </div>
 </template>
@@ -66,7 +66,21 @@
 
         methods: {
             submit () {
-                alert('Title: ${this.title}\nInputFile: ${this.file}\nContent: ${this.content}');
+                this.$http.post('/api/notices',{
+                    title: this.title,
+                    file: this.file,
+                    content: this.content
+                }).then(response=> {
+                    localStorage.token = response.data.token;
+                    this.$router.push({name: 'Main'});
+                }).catch(err =>{
+                    if (!err.response.data || !err.response.data.message)
+                    {
+                        alert('알 수 없는 오류가 발생하였습니다.');
+                        return;
+                    }
+                    alert(err.response.data.message);
+                });
             }
         },
 
