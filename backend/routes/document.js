@@ -42,13 +42,13 @@ router.get('/', async (req, res, next) => {
     keyword = '%' + keyword + '%';
 
     let result1 = await req.mysql.query(
-        'SELECT COUNT(*) as count FROM `document` WHERE `title` LIKE ? AND `content` LIKE ?',
-        [ keyword, keyword ]
+        'SELECT COUNT(*) as count FROM `document` WHERE board_idx=? AND `title` LIKE ? AND `content` LIKE ?',
+        [ req.board.idx, keyword, keyword ]
     );
 
     let result2 = await req.mysql.query(
-        'SELECT * FROM `board` WHERE `title` LIKE ? AND `content` LIKE ? ORDER BY `idx` DESC LIMIT ?,?',
-        [ keyword, keyword, (page - 1) * count, count ]
+        'SELECT * FROM `document` WHERE board_idx=? AND `title` LIKE ? AND `content` LIKE ? ORDER BY `idx` DESC LIMIT ?,?',
+        [ req.board.idx, keyword, keyword, (page - 1) * count, count ]
     );
 
     res.send({

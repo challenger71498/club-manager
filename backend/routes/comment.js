@@ -12,7 +12,7 @@ router.use(mysql.use(), async (req, res, next) => {
     let documentIdx = parseInt(req.params.document_idx);
 
     let result = await req.mysql.query(
-        'SELECT * FROM `comment` WHERE `idx` = ?',
+        'SELECT * FROM `document` WHERE `idx` = ?',
         [documentIdx]
     );
 
@@ -27,16 +27,20 @@ router.use(mysql.use(), async (req, res, next) => {
 //   경로가 '/'이고 GET 방식으로 요청했을 때
 
 router.get('/', async (req, res, next) => {
-
     let { page } = req.query;
     page = parseInt(page) || 1;
     if (page < 1) page = 1;
 
     const count = 20;
 
+    let result1 = await req.mysql.query(
+        'SELECT COUNT(*) as count FROM `comment` WHERE document_idx=?',
+        [req.document.idx]
+    );
+
     let result2 = await req.mysql.query(
-        'SELECT * FROM `comment` WHERE ORDER BY `idx` DESC LIMIT ?,?',
-        [ (page - 1) * count, count ]
+        'SELECT * FROM `comment` WHERE document_idx=? ORDER BY `idx` ASC LIMIT ?,?',
+        [  req.document.idx, (page - 1) * count, count ]
     );
 
     res.send({
