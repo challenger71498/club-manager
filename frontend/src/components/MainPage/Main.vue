@@ -40,6 +40,27 @@
                 this.isLogged = false;
             }
         },
+        created() {
+            this.$http.get("/api/notices").then(response => {
+                this.noticeItems = response.data.items.slice(0, 5);
+            })
+        },
+        computed: {
+            noticePreview() {
+                return this.noticeItems.map(item => {
+                    return {
+                        ...item,
+                        to: {
+                            name: 'BoardDocument',
+                            params: {
+                                board_idx: 0,
+                                document_idx: item.idx
+                            }
+                        }
+                    }
+                });
+            }
+        },
         data() {
             return {
                 isLogged : false,
@@ -53,13 +74,7 @@
                     userLevel : '',
                     picture : require("../../assets/if_profle_1055000.png"),
                 },
-                noticePreview : [
-                    {title: "2018 인하대학교 창업 경진대회 개최 및 참가자 모집", date: "2018-10-01"},
-                    {title: "게임제작 소모임 IGDC에서 신입회원을 모집합니다.", date: "2018-10-01"},
-                    {title: "컴퓨터 연구동아리 IGRUS에서 신입회원을 모집합니다!", date: "2018-10-01"},
-                    {title: "공지4", date: "2018-10-01"},
-                    {title: "공지5", date: "2018-10-01"},
-                ],
+                noticeItems : [],
                 PhotoPreviewData : [
                     "https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&h=3500",
                     "https://images.pexels.com/photos/315191/pexels-photo-315191.jpeg?auto=compress&cs=tinysrgb&h=350,",
@@ -176,7 +191,7 @@
 
             this.$http.get('/api/members/token').then(response => {
                 this.user.userName = response.data.name;
-                this.user.level = response.data.level;
+                this.user.userLevel = response.data.level;
             });
         }
     }

@@ -4,7 +4,7 @@
         <td class="title">
             <router-link :to="to">{{ title }}</router-link>
         </td>
-        <td class="date">{{ register_date }}</td>
+        <td class="date">{{ date }}</td>
         <td class="writer">{{ writer_name }}</td>
         <td class="view_count"><img class="icon" src="../../assets/view-icon.png">{{ view_count }}</td>
         <td class="total_comment"><img class="icon" src="../../assets/comment-icon.png">{{ total_comment }}</td>
@@ -23,6 +23,11 @@
             writer_name: String,
             view_count: Number,
             total_comment: Number
+        },
+        computed: {
+            date () {
+                return this.register_date.substr(0, 10);
+            }
         }
     };
 </script>

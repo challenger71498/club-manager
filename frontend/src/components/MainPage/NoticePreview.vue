@@ -3,8 +3,8 @@
         <h1>Notice</h1>
         <div class="lists">
             <div class="list" v-for="content in contents">
-                <div class="notice-title">{{content.title}}</div>
-                <div class="notice-date">{{content.date}}</div>
+                <router-link :to="content.to"><div class="notice-title">{{content.title}}</div></router-link>
+                <div class="notice-date">{{date(content.register_date)}}</div>
             </div>
         </div>
     </div>
@@ -13,9 +13,11 @@
 <script>
     export default {
         props: {
-            contents: {
-                type: Array
-                //[title, date]
+            contents: Array
+        },
+        methods: {
+            date(register_date) {
+                return register_date.slice(0, 10);
             }
         }
     }

@@ -1,32 +1,32 @@
 <template>
     <section class="BoardDocument__Wrapper">
         <header>
-            <h3 class="title">{{ title }}</h3>
+            <h3 class="title">{{ document.title }}</h3>
             <div class="information">
                 <ul>
                     <li>
-                        <em>작성자</em>: {{ writer_name }}
+                        <em>작성자</em>: {{ document.writer_name }}
                     </li>
                     <li>
-                        <em>작성일</em>: {{ register_date }}
+                        <em>작성일</em>: {{ this.date }}
                     </li>
                     <li>
-                        <em>조회수</em>: {{ view_count }}
+                        <em>조회수</em>: {{ document.view_count }}
                     </li>
                 </ul>
             </div>
         </header>
         <article>
-            <div>
+            <!--<div>
                 <img :src=image :alt=alt>
-            </div>
-            {{ content }}
+            </div>-->
+            {{ document.content }}
             <router-link :to="{ name:'BoardWrite', params: { board_idx: 0 } }">
                 <button class="button">글 수정</button>
             </router-link>
         </article>
         <div class="comments">
-            <h4>댓글 ({{total_comment}})</h4>
+            <h4>댓글 ({{this.total_comment}})</h4>
             <CommentList :comments="comments"></CommentList>
         </div>
     </section>
@@ -44,37 +44,37 @@
             },
             documentIdx () {
                 return parseInt(this.$route.params.document_idx);
+            },
+            date() {
+                return this.document.register_date.slice(0, 10);
+            },
+            total_comment() {
+                return this.comments.length;
             }
         },
-
         data() {
-            function dummy(idx) {
-                return {
-                    userName: `유저${idx}`,
-                    content: "댓글내용",
-                    profile_image: require("../../assets/if_profle_1055000.png"),
-                    date: "2018.09.27",
-                    likeUp: Math.round(Math.random() * 10),
-                    likeDown: Math.round(Math.random() * 10),
-                };
-            }
-
             return {
-                title: `제목 1`,
-                register_date: new Date().toISOString().substr(0, 10),
-                content: '글내용',
-                image: 'https://dummyimage.com/300x300/000/fff',
-                alt: "사진이다",
-                writer_name: '작성자',
-                writer: 1,
-                view_count: 5,
-                total_comment: 5,
-                fresh: false,
-                comments:  new Array(10).fill(0).map((v, i) => dummy(i))
-            };
+                document: {
+                    title: '',
+                    writer_name: '',
+                    register_date: '',
+                    view_count: 0,
+                    content: ''
+                },
+                comments: []
+            }
         },
-
         created () {
+            this.$http.get("/api/notices/"+this.documentIdx).then(response => {
+                this.document.title = response.data.title;
+                this.document.writer_name = response.data.writer_name;
+                this.document.register_date = response.data.register_date;
+                this.document.view_count = response.data.view_count;
+                this.document.content = response.data.content;
+            });
+
+            this.$http.get("/api/boards/" + this.boardIdx + "/documents/" + this.documentIdx +"/comments")
+                .then(response => { this.comments = response.data; console.log(this.comments) });
         }
     };
 </script>

@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        name: "document-preview_-item",
+        name: "document-preview-item",
         props: {
             to: [Object, String],
             idx: Number,
