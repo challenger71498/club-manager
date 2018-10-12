@@ -22,13 +22,11 @@ import BoardLayout from './components/Board/Layout.vue';
 import BoardList from './components/Board/List.vue'
 import BoardDocument from './components/Board/Document.vue'
 import WriteDocument from './components/Board/DocumentWrite.vue'
-import axiostest from './components/axiostest.vue'
 
 const routes = [
     { path: '/', component: MainPage },
     { path: '/intro', component: WelcomePage },
     { path: '/login', component: Login },
-    // { path: '/test', component: axiostest },
     {
         path: '/signup',
         name: 'SignUp',
