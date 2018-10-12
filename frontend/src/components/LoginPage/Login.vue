@@ -22,20 +22,19 @@
 
 <script>
     export default {
-        // 24~32번째 줄은 무슨 용도?
-        props: {
-            user : {
-                userName : String,
-                studentGrade : Number,
-                userMajor : String,
-                userLevel : String,
-                picture : String
-            }
-        },
-
         methods: {
             login () {
-                alert(`ID: ${this.id}\nPW: ${this.password}`);
+                this.$http.post('/api/members/token', {
+                    id: this.id,
+                    password: this.password
+                }).then(response => {
+                    localStorage.token = response.data.token;
+                }).then(() => {
+                    alert(localStorage.token);
+                });
+                // this.$http.defaults.headers.common['X-Token'] = ???;
+
+                // alert(`ID: ${this.id}\nPW: ${this.password}`);
             }
         },
 
