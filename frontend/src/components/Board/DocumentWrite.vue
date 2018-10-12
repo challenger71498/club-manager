@@ -71,8 +71,7 @@
                     file: this.file,
                     content: this.content
                 }).then(response=> {
-                    localStorage.token = response.data.token;
-                    this.$router.push({name: 'Main'});
+                    this.$router.push({name: 'BoardDocument', params: { document_idx: response.data.idx }});
                 }).catch(err =>{
                     if (!err.response.data || !err.response.data.message)
                     {
