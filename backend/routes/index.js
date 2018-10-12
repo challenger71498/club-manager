@@ -16,6 +16,7 @@ router.use('/bylaws', require('./bylaw'));
 router.use('/studies', require('./study'));
 router.use('/groups', require('./group'));
 router.use('/projects', require('./project'));
+router.use('/documents', require('./documents'));
 
 router.use((req, res, next) => {
     next(Message.API_NOT_FOUND);
