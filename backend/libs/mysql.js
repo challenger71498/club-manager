@@ -1,10 +1,6 @@
 const mysql = require('promise-mysql');
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '12345678',
-    database: 'club_manager'
-});
+const config = require('./config');
+const pool = mysql.createPool(config.mysql);
 
 module.exports = {
     pool,
