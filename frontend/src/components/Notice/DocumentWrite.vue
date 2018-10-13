@@ -68,21 +68,16 @@
         },
         methods: {
             submit () {
-                try {
-                    let response = await this.$http.post('/api/notices',{
-                        title: this.title,
-                        file: this.file,
-                        content: this.content,
-                    });
-
+                this.$http.post('/api/notices', {
+                    title: this.title,
+                    file: this.file,
+                    content: this.content,
+                }).then(response => {
                     this.$router.push({
                         name: 'NoticeDocument',
                         params: { document_idx: response.data.idx },
                     });
-                }
-                catch (err) {
-                    this.$util.handleError(err);
-                }
+                }).catch(this.$util.handleError);
             }
         },
 
