@@ -5,19 +5,18 @@ const TOKEN_NAME = 'member.token';
 
 export default new Vue({
     watch: {
-        async token (token) {
+        token (token) {
             if (token === null) {
                 localStorage.removeItem(TOKEN_NAME);
                 delete this.$http.defaults.headers.common[TOKEN_HEADER];
+                this.isGuest = true;
                 return;
             }
 
             localStorage.setItem(TOKEN_NAME, token);
             this.$http.defaults.headers.common[TOKEN_HEADER] = token;
 
-            try {
-                let response = await this.$http.get('/api/members/token');
-
+            this.$http.get('/api/members/token').then(response => {
                 this.idx = response.data.idx;
                 this.id = response.data.id;
                 this.name = response.data.name;
@@ -26,12 +25,11 @@ export default new Vue({
                 this.login_date = response.data.login_date;
                 this.register_date = response.data.register_date;
 
-                this.isLogged = true;
-            }
-            catch (err) {
+                this.isGuest = false;
+            }).catch(err => {
                 console.error('Error on token update:', err);
                 this.token = null;
-            }
+            });
         }
     },
 
@@ -42,14 +40,18 @@ export default new Vue({
         },
 
         logout() {
-            console.log('LOGOUT');
             this.token = null;
-            this.isLogged = false;
+        },
+    },
+
+    computed: {
+        isAdmin () {
+            return !this.isGuest && this.level === 0;
         },
     },
 
     data: {
-        isLogged: false,
+        isGuest: true,
         idx: 0,
         id: null,
         name: null,

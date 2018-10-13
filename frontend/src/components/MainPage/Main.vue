@@ -2,8 +2,8 @@
     <div class="wrap">
         <Carousel class="carousel"></Carousel>
         <div class="contents">
-            <UserInfo v-if="$member.isLogged" class="user" v-bind="$member.$data" @logout="onLogout"></UserInfo>
-            <Login v-else class="user" @login="onLogin"></Login>
+            <Login v-if="$member.isGuest" class="user" @login="onLogin"></Login>
+            <UserInfo v-else class="user" v-bind="$member.$data" @logout="onLogout"></UserInfo>
             <NoticePreview class="notice-preview" :contents="noticePreview"></NoticePreview>
             <PhotoPreview :photos="photos"></PhotoPreview>
             <DocumentPreview :list="documents"></DocumentPreview>

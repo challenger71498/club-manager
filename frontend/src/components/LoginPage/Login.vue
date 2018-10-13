@@ -23,9 +23,10 @@
 <script>
     export default {
         methods: {
-            async login () {
-                await this.$member.login(this.id, this.password);
-                this.$router.push({ name: 'Main' });
+            login () {
+                this.$member.login(this.id, this.password).then(() => {
+                    this.$router.push({ name: 'Main' });
+                }).catch(this.$util.handleError);
             }
         },
 
@@ -34,7 +35,7 @@
                 id: '',
                 password: '',
             };
-        }
+        },
     }
 </script>
 
