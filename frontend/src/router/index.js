@@ -5,10 +5,8 @@ import MainPage from '@components/MainPage/Main.vue';
 import Login from '@components/LoginPage/Login.vue';
 import SignUp from '@components/LoginPage/SignUp.vue'
 
-import BoardLayout from '@components/Board/Layout.vue';
-import BoardList from '@components/Board/List.vue';
-import BoardDocument from '@components/Board/Document.vue';
-import WriteDocument from '@components/Board/DocumentWrite.vue';
+import NoticeRoute from './notice';
+import BoardRoute from './board';
 
 const routes = [
     {
@@ -31,27 +29,8 @@ const routes = [
         name: 'SignUp',
         component: SignUp,
     },
-    {
-        path: '/board/:board_idx(\\d+)',
-        component: BoardLayout,
-        children: [
-            {
-                path: '',
-                name: 'BoardList',
-                component: BoardList
-            },
-            {
-                path: 'read/:document_idx(\\d+)',
-                name: 'BoardDocument',
-                component: BoardDocument
-            },
-            {
-                path: 'write',
-                name: 'BoardWrite',
-                component: WriteDocument,
-            }
-        ]
-    }
+    NoticeRoute,
+    BoardRoute,
 ];
 
 const router = new VueRouter({
@@ -67,7 +46,7 @@ const router = new VueRouter({
         else {
             return { x: 0, y: 0 };
         }
-    }
+    },
 });
 
 export default router;
