@@ -16,8 +16,10 @@ Vue.prototype.$EventBus = new Vue();
 import $member from './store/member';
 Vue.prototype.$member = $member;
 
-import router from './router/index';
+import $util from './util';
+Vue.prototype.$util = $util;
 
+import router from './router/index';
 new Vue({
     router,
     render: h => h(App)
