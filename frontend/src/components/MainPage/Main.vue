@@ -31,7 +31,7 @@
         },
         methods: {
             onLogin(id, password) {
-                this.$member.login(id, password);
+                this.$member.login(id, password).catch(this.$util.handleError);
             },
 
             onLogout() {
